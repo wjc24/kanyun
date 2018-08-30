@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\work\kanyun\public/../application/index\view\index\index.html";i:1535604739;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\work\kanyun\public/../application/index\view\index\index.html";i:1535605012;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
     <meta name="keywords"
           content=""/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" href="https://static.kancloud.cn/asset/reader.css?version=2a8f88a0-6ef6-11e8-81df-85283e5f2b04"/>
+    <link rel="stylesheet" href="/assets/css/reader.css"/>
 </head>
 <body>
 <div id="main">
@@ -161,7 +161,7 @@
         dimension1:63722
     });
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script async src='/assets/js/analytics.js'></script>
 <!-- End Google Analytics -->
 </body>
 </html>

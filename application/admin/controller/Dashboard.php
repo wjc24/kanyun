@@ -33,6 +33,11 @@ class Dashboard extends Backend
         Config::parse($addonComposerCfg, "json", "composer");
         $config = Config::get("composer");
         $addonVersion = isset($config['version']) ? $config['version'] : __('Unknown');
+        $article = new \app\admin\model\Article();
+        $all = $article->count();
+        $one = $article->where('level','one')->count();
+        $two = $article->where('level','two')->count();
+        $three = $article->where('level','three')->count();
         $this->view->assign([
             'totaluser'        => 35200,
             'totalviews'       => 219390,
@@ -47,7 +52,11 @@ class Dashboard extends Backend
             'paylist'          => $paylist,
             'createlist'       => $createlist,
             'addonversion'       => $addonVersion,
-            'uploadmode'       => $uploadmode
+            'uploadmode'       => $uploadmode,
+            'all'              =>$all,
+            'one'              =>$one,
+            'two'              =>$two,
+            'three'            =>$three
         ]);
 
         return $this->view->fetch();

@@ -20,43 +20,47 @@
 	.sidebar .nav span{
 		font-size: 10px;
 	}
+	.sidebar .nav > li > a{
+		padding: 1.4rem;
+	}
 </style>
 <body>
 	<!-- WRAPPER -->
-	<div id="wrapper">
+	<div id="wrapper" >
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="height: 5%">
 			<span style="font-size: 2rem;display:inline-block; margin: .5% 0 0 1%">电商小程序使用教程</span>
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar">
+		<div id="sidebar-nav" class="sidebar" style="overflow:auto;width: 260px;height: 100%">
 			<div class="sidebar-scroll">
-				<div class="container-fluid" style="margin: -20% 0 0 -12%">
+				<div class="container-fluid" style="margin: -21% 0 0 -12%">
 					<form class="navbar-form navbar-left">
 						<div class="input-group">
 							<input type="text" value="" id="select" class="form-control" placeholder="请输入搜索关键词...">
-							<span class="input-group-btn"><button type="button" class="btn btn-primary" onclick="select()">Go</button></span>
+							<span class="input-group-btn" onclick="select()"><button type="button" class="btn btn-primary" >Go</button></span>
 						</div>
 					</form>
 				</div>
-				<nav>
+				<div style="overflow:auto;width: 260px;height: 100%">
+				<!--<nav>-->
 					<ul class="nav">
 						{volist id="data_one" name="data_one"}
 						<li>
-							<a href="#{$data_one.id}" data-toggle="collapse" class="collapsed" onclick="show('{$data_one.id}')"><span>{$data_one.title}</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#{$data_one.id}" class="{$data_one.id}" data-toggle="collapse" class="collapsed" onclick="change('{$data_one.id}')"><span>{$data_one.title}</span> {if condition="$data_one.icon == 1"}<i class="icon-submenu lnr lnr-chevron-left"></i>{else/}{/if}</a>
 							<div id="{$data_one.id}" class="collapse ">
 							{volist id="data_two" name="data_one.two"}
 							{if condition="$data_one.id == $data_two.pid"}
 									<ul class="nav">
 										<li>
-											<a href="#{$data_two.id}" data-toggle="collapse" class="collapsed" onclick="show('{$data_two.id}')"><span>{$data_two.title}</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+											<a href="#{$data_two.id}" class="{$data_two.id}" data-toggle="collapse" class="collapsed" onclick="change('{$data_two.id}')"><span>{$data_two.title}</span>{if condition="$data_two.icon == 1"}<i class="icon-submenu lnr lnr-chevron-left"></i>{else/}{/if}</a>
 											<div id="{$data_two.id}" class="collapse ">
 												{volist id="data_three" name="data_one.three"}
 												{if condition="$data_two.id == $data_three.pid"}
 												<ul class="nav">
 													<li>
-														<a href="javascript:void(0);" class="collapsed" ><span style="margin-left:20%;" onclick="show('{$data_three.id}')">{$data_three.title}</span></a>
+														<a href="javascript:void(0);" class="{$data_three.id}" class="collapsed" ><span style="margin-left:20%;" onclick="change('{$data_three.id}')">{$data_three.title}</span></a>
 													</li>
 												</ul>
 												{/if}
@@ -70,14 +74,19 @@
 						</li>
 						{/volist}
 					</ul>
-				</nav>
+				<!--</nav>-->
+				</div>
 			</div>
 		</div>
-		<div class="main">
+		<div class="main" style="margin-bottom:30px;">
+			<input type="hidden" value="1" id="id">
+			<span id="first"></span>
 			<div  id="content">
-				{$data_one.content}
-			</div>
 
+
+			</div>
+			<span style="margin-left: 10%;">上一篇：<a href="javascript:void(0);" id="previous" onclick="change_previous()"></a></span>
+			<span style="margin-left: 50%;">下一篇：<a href="javascript:void(0);" id="next" onclick="change_next()"></a></span>
 		</div>
 	</div>
 
@@ -87,23 +96,152 @@
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 </body>
 <script>
-	function show(id) {
+	var tid = 0;
+	var gid = 0;
+	// 点击导航栏跳转
+	function change(id) {
+	    // alert(id);
 		$.ajax({
 			url: "{:url('content')}",
 			type: "post",
 			data: {'id':id},
 			dataType: "json",
 			success:function (res) {
-				$('#content').html(res);
+				$('#content').html(res['content']);
+                $('#id').val(res['id']);
+                $('#previous').html(res['title_previous']);
+                $('#next').html(res['title_next']);
+                $('.'+gid).removeClass('active');
+                $('.'+id).addClass('active');
+                gid = id;
+                if (id !== tid){
+                    $('.'+tid).removeClass('active');
+                }
             },
 			error:function () {
 				console.log('出错啦');
             }
 		})
+        $("html, body").animate({
+            scrollTop: $("#first").offset().top }, {duration: 500,easing: "swing"});
+        return false;
+
     }
+    // 默认页面
+    $(function(){
+		var id = $('#id').val();
+        $.ajax({
+            url: "{:url('content')}",
+            type: "post",
+            data: {'id':id},
+            dataType: "json",
+            success:function (res) {
+                // console.log(res);
+                $('#content').html(res['content']);
+                $('#previous').html(res['title_previous']);
+                $('#next').html(res['title_next']);
+            },
+            error:function () {
+                console.log('出错啦');
+            }
+        });
+
+	});
+
+	// 上一篇跳转
+	function change_previous(){
+        var id = $('#id').val();
+        $.ajax({
+            url: "{:url('previous')}",
+            type: "post",
+            data: {'id':id},
+            dataType: "json",
+            success:function (res) {
+                $('#id').val(res['id']);
+                $('#content').html(res['content']);
+                $('#previous').html(res['title_previous']);
+                $('#next').html(res['title_next']);
+                var mid = parseInt(id) - 1;
+                $('.'+id).removeClass('active');
+                $('.'+mid).addClass('active');
+                tid = mid;
+            },
+            error:function () {
+                console.log('出错啦');
+            }
+        })
+	}
+    // 下一篇跳转
+    function change_next(){
+        var id = $('#id').val();
+        // alert(id);
+        $.ajax({
+            url: "{:url('next')}",
+            type: "post",
+            data: {'id':id},
+            dataType: "json",
+            success:function (res) {
+				// console.log(res);
+                $('#id').val(res['id']);
+                $('#content').html(res['content']);
+                $('#previous').html(res['title_previous']);
+                $('#next').html(res['title_next']);
+                var mid = parseInt(id) + 1;
+                $('.'+id).removeClass('active');
+                $('.'+mid).addClass('active');
+                tid = mid;
+            },
+            error:function () {
+                console.log('出错啦');
+            }
+        })
+    }
+//搜索
     function select() {
-		
+        var key = $('#select').val();
+        var title = '';
+        var title1 = '<li><a href="#{$data_one.id}" data-toggle="collapse" class="collapsed" onclick="show(\'';
+        var title2 = '\')"><span>';
+        var title3 = '</span></a></li>';
+        if (key == ''){
+            window.location.reload();
+            return false;
+        }
+        $.ajax({
+            url: "{:url('select')}",
+            type:"post",
+            data:{'key':key},
+            dataType:"json",
+            success:function (res) {
+                console.log(res[0].content);
+                $('#content').html(res[0].content);
+                $.each(res,function(index,v) {
+                    title += title1 + v.id + title2 + v.title + title3;
+                });
+                $('.nav').html(title);
+            },
+            error: function () {
+                console.log('出错啦');
+            }
+        })
     }
+    function show(id){
+        var key = $('#select').val();
+        $.ajax({
+            url: "{:url('select1')}",
+            type:"post",
+            data:{'key':key,'id':id},
+            dataType:"json",
+            success:function (res) {
+                console.log(res.content);
+                $('#content').html(res.content);
+            },
+            error: function () {
+                console.log('出错啦');
+            }
+        })
+    }
+
 </script>
 
 </html>

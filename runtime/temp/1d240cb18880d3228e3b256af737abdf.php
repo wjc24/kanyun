@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:64:"D:\work\kanyun\public/../application/admin\view\index\index.html";i:1533742465;s:54:"D:\work\kanyun\application\admin\view\common\meta.html";i:1533742465;s:56:"D:\work\kanyun\application\admin\view\common\header.html";i:1533742465;s:54:"D:\work\kanyun\application\admin\view\common\menu.html";i:1533742465;s:57:"D:\work\kanyun\application\admin\view\common\control.html";i:1533742465;s:56:"D:\work\kanyun\application\admin\view\common\script.html";i:1533742465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:6:{s:64:"D:\work\kanyun\public/../application/admin\view\index\index.html";i:1533742465;s:54:"D:\work\kanyun\application\admin\view\common\meta.html";i:1533742465;s:56:"D:\work\kanyun\application\admin\view\common\header.html";i:1535692925;s:54:"D:\work\kanyun\application\admin\view\common\menu.html";i:1535692925;s:57:"D:\work\kanyun\application\admin\view\common\control.html";i:1533742465;s:56:"D:\work\kanyun\application\admin\view\common\script.html";i:1533742465;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -58,29 +58,29 @@
                     <a href="/" target="_blank"><i class="fa fa-home" style="font-size:14px;"></i></a>
                 </li>
 
-                <li class="dropdown notifications-menu hidden-xs">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header"><?php echo __('Latest news'); ?></li>
-                        <li>
-                            <!-- FastAdmin最新更新信息,你可以替换成你自己站点的信息,请注意修改public/assets/js/backend/index.js文件 -->
-                            <ul class="menu">
+                <!--<li class="dropdown notifications-menu hidden-xs">-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+                        <!--<i class="fa fa-bell-o"></i>-->
+                        <!--<span class="label label-warning"></span>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li class="header"><?php echo __('Latest news'); ?></li>-->
+                        <!--<li>-->
+                            <!--&lt;!&ndash; FastAdmin最新更新信息,你可以替换成你自己站点的信息,请注意修改public/assets/js/backend/index.js文件 &ndash;&gt;-->
+                            <!--<ul class="menu">-->
 
-                            </ul>
-                        </li>
-                        <li class="footer"><a href="#" target="_blank"><?php echo __('View more'); ?></a></li>
-                    </ul>
-                </li>
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li class="footer"><a href="#" target="_blank"><?php echo __('View more'); ?></a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
 
                 <!-- 账号信息下拉框 -->
-                <li class="hidden-xs">
-                    <a href="javascript:;" data-toggle="checkupdate" title="<?php echo __('Check for updates'); ?>">
-                        <i class="fa fa-refresh"></i>
-                    </a>
-                </li>
+                <!--<li class="hidden-xs">-->
+                    <!--<a href="javascript:;" data-toggle="checkupdate" title="<?php echo __('Check for updates'); ?>">-->
+                        <!--<i class="fa fa-refresh"></i>-->
+                    <!--</a>-->
+                <!--</li>-->
 
                 <!-- 清除缓存 -->
                 <li>
@@ -133,19 +133,19 @@
                             </p>
                         </li>
                         <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="https://www.fastadmin.net" target="_blank"><?php echo __('FastAdmin'); ?></a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="https://forum.fastadmin.net" target="_blank"><?php echo __('Forum'); ?></a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="https://doc.fastadmin.net" target="_blank"><?php echo __('Docs'); ?></a>
-                                </div>
-                            </div>
-                        </li>
+                        <!--<li class="user-body">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-xs-4 text-center">-->
+                                    <!--<a href="https://www.fastadmin.net" target="_blank"><?php echo __('FastAdmin'); ?></a>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-4 text-center">-->
+                                    <!--<a href="https://forum.fastadmin.net" target="_blank"><?php echo __('Forum'); ?></a>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-4 text-center">-->
+                                    <!--<a href="https://doc.fastadmin.net" target="_blank"><?php echo __('Docs'); ?></a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
@@ -222,10 +222,10 @@
         <?php echo $menulist; ?>
 
         <!--以下4行可以删除或改成自己的链接,但建议你在你的网站上添加一个FastAdmin的链接-->
-        <li class="header" data-rel="external"><?php echo __('Links'); ?></li>
-        <li data-rel="external"><a href="https://doc.fastadmin.net" target="_blank"><i class="fa fa-list text-red"></i> <span><?php echo __('Docs'); ?></span></a></li>
-        <li data-rel="external"><a href="https://forum.fastadmin.net" target="_blank"><i class="fa fa-comment text-yellow"></i> <span><?php echo __('Forum'); ?></span></a></li>
-        <li data-rel="external"><a href="https://jq.qq.com/?_wv=1027&k=487PNBb" target="_blank"><i class="fa fa-qq text-aqua"></i> <span><?php echo __('QQ qun'); ?></span></a></li>
+        <!--<li class="header" data-rel="external"><?php echo __('Links'); ?></li>-->
+        <!--<li data-rel="external"><a href="https://doc.fastadmin.net" target="_blank"><i class="fa fa-list text-red"></i> <span><?php echo __('Docs'); ?></span></a></li>-->
+        <!--<li data-rel="external"><a href="https://forum.fastadmin.net" target="_blank"><i class="fa fa-comment text-yellow"></i> <span><?php echo __('Forum'); ?></span></a></li>-->
+        <!--<li data-rel="external"><a href="https://jq.qq.com/?_wv=1027&k=487PNBb" target="_blank"><i class="fa fa-qq text-aqua"></i> <span><?php echo __('QQ qun'); ?></span></a></li>-->
     </ul>
 </section>
             </aside>

@@ -35,7 +35,7 @@
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar" style="overflow:auto;width: 260px;height: 100%">
 			<div class="sidebar-scroll">
-				<div class="container-fluid" style="margin: -21% 0 0 -12%">
+				<div class="container-fluid" style="margin: -21% 0 0 -16%">
 					<form class="navbar-form navbar-left">
 						<div class="input-group">
 							<input type="text" value="" id="select" class="form-control" placeholder="请输入搜索关键词...">
@@ -166,6 +166,9 @@
                 $('.'+id).removeClass('active');
                 $('.'+mid).addClass('active');
                 tid = mid;
+                $("html, body").animate({
+                    scrollTop: $("#first").offset().top }, {duration: 500,easing: "swing"});
+                return false;
             },
             error:function () {
                 console.log('出错啦');
@@ -191,6 +194,9 @@
                 $('.'+id).removeClass('active');
                 $('.'+mid).addClass('active');
                 tid = mid;
+                $("html, body").animate({
+                    scrollTop: $("#first").offset().top }, {duration: 500,easing: "swing"});
+                return false;
             },
             error:function () {
                 console.log('出错啦');
@@ -244,8 +250,11 @@
     }
 
     function bit(id){
-        document.getElementById(id).scrollIntoView(true);
+        // document.getElementById(id).scrollIntoView(true);
+        var div_top = document.getElementById(id).offsetTop;
+        window.scrollTo(0, div_top - 65);
 	}
+
 </script>
 
 </html>

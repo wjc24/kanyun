@@ -78,9 +78,10 @@
 				</div>
 			</div>
 		</div>
+		<div id="first"></div>
 		<div class="main" style="margin-bottom:30px;">
 			<input type="hidden" value="1" id="id">
-			<span id="first"></span>
+			<!--<span id="first"></span>-->
 			<div  id="content">
 
 
@@ -242,6 +243,9 @@
         })
     }
 
+    function bit(id){
+        document.getElementById(id).scrollIntoView(true);
+	}
 </script>
 
 </html>

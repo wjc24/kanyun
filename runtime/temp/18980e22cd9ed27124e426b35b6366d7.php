@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\work\kanyun\public/../application/index\view\index\index.html";i:1535713028;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\work\kanyun\public/../application/index\view\index\index.html";i:1535938649;}*/ ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -75,9 +75,10 @@
 				</div>
 			</div>
 		</div>
+		<div id="first"></div>
 		<div class="main" style="margin-bottom:30px;">
 			<input type="hidden" value="1" id="id">
-			<span id="first"></span>
+			<!--<span id="first"></span>-->
 			<div  id="content">
 
 
@@ -239,6 +240,9 @@
         })
     }
 
+    function bit(id){
+        document.getElementById(id).scrollIntoView(true);
+	}
 </script>
 
 </html>
